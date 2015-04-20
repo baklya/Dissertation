@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html ng-app="traceApp">
+<head>
+  <title>Patterns Matrix For Trace: <%=trace.TraceId%></title>
+
+  <script src="../angular.min.js"></script>
+
+
+  <script src="../script.js"></script>
+
+
+
+
+
+  <link type="text/css" href="../matrix.css" rel="stylesheet" />
+</head>
+<body>
+
+  <input type="hidden" id="TraceId" value="<%=trace.TraceId%>">
+  <input type="hidden" id="LocNumber" value="<%=trace.NumberOfLocations%>">
+
+
+  <div id="content">
+    <svg id="chart_placeholder" />
+
+
+  </div>
+
+
+  <script type="text/javascript" src="../d3.js"></script>
+
+  <script type="text/javascript" src="../cie.js"></script>
+
+  <script type="text/javascript" src="../patterns.js"></script>
+
+
+</body>
+</html>

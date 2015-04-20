@@ -1,0 +1,19 @@
+{
+  "name": "nodeOtf2Analizer",
+  "private": true,
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD",
+  "dependencies": {
+    "body-parser": "^1.9.0",
+    "consolidate": "^0.10.0",
+    "express": "^4.9.5",
+    "mongodb": "^2.0.25",
+    "swig": "^1.4.2"
+  }
+}

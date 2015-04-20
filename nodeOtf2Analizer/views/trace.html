@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html ng-app="traceApp">
+<head>
+  <title>Trace: <%=trace.TraceId%></title>
+
+  <script src="../angular.min.js"></script>
+
+
+  <script src="../script.js"></script>
+
+
+  
+
+
+
+
+  <link type="text/css" href="../trace.css" rel="stylesheet" />
+</head>
+<body>
+
+  <input type="hidden" id="TraceId" value="<%=trace.TraceId%>">
+  <input type="hidden" id="LocNumber" value="<%=trace.NumberOfLocations%>">
+
+
+  <div id="content">
+    <svg id="chart_placeholder" />
+
+    <div id="rightMenu">
+
+
+
+      Left border: <input id="lval" type="text" name="lval"/> <br/>
+      Right border: <input id="rval" type="text" name="rval"/> <br/>
+      <button id="left"> < </button>
+      <button id="minus"> - </button>
+      <button id="plus"> + </button>
+      <button id="right"> > </button>
+
+      <br/><br/>
+      Legend: 
+      <svg id="legend" />
+
+
+
+    </div>
+  </div>
+
+
+  <script type="text/javascript" src="../d3.js"></script>
+
+  <script type="text/javascript" src="../cie.js"></script>
+
+  <script type="text/javascript" src="../trace.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html ng-app="traceApp">
+<head>
+  <title>Dynamic Communication Matrix For Trace: <%=trace.TraceId%></title>
+
+  <script src="../angular.min.js"></script>
+
+
+  <script src="../script.js"></script>
+
+
+
+
+
+  <link type="text/css" href="../matrix.css" rel="stylesheet" />
+</head>
+<body>
+
+  <input type="hidden" id="TraceId" value="<%=trace.TraceId%>">
+  <input type="hidden" id="LocNumber" value="<%=trace.NumberOfLocations%>">
+
+
+  <div id="content">
+    <svg id="chart_placeholder" />
+
+    <div id="rightMenu">
+
+
+      <label id="current_part">0/0</label>
+      <br/>
+      <button id="left"> < </button>
+      <button id="play-stop"> play </button>
+      <button id="right"> > </button>
+
+      <br/><br/>
+
+
+
+
+    </div>
+  </div>
+
+
+  <script type="text/javascript" src="../d3.js"></script>
+
+  <script type="text/javascript" src="../cie.js"></script>
+
+  <script type="text/javascript" src="../one_tenth_comm_matrix.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html ng-app="traceApp">
+  <head>
+    <script src="../angular.min.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+  </head>
+  <body>
+    <div ng-controller="TraceController" ng-init="init()">
+    
+      <div class="list">
+        <table class="items">
+          <tr>
+            <th>Time Line</th>
+            <th>Communication matrix</th>   
+            <th>Dynamic communication matrix</th>
+            <th>Sent time matrix</th>
+            <th>Patterns</th>
+          </tr>
+          <tr ng-repeat="trace in traces" >
+            <td><a ng-href="traces/{{trace.TraceId}}">{{trace.TraceId}}</a></td>
+            <td><a ng-href="comm_matrix/{{trace.TraceId}}">{{trace.TraceId}}</a></td>   
+            <td><a ng-href="one_tenth_comm_matrix/{{trace.TraceId}}">{{trace.TraceId}}</a></td>
+            <td><a ng-href="time_matrix/{{trace.TraceId}}">{{trace.TraceId}}</a></td>
+            <td><a ng-href="patterns/{{trace.TraceId}}">{{trace.TraceId}}</a></td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </body>
+</html>

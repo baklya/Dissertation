@@ -1,0 +1,99 @@
+
+div.tooltip {   
+	position: absolute;           
+	text-align: center;                                         
+	padding: 2px;             
+	font: 12px sans-serif;        
+	background: lightsteelblue;   
+	border: 0px;      
+	border-radius: 8px;           
+	pointer-events: none;         
+}
+
+input{
+	margin: 5px;
+}
+
+
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+
+#legend{
+	margin-top: 10px; 
+}
+
+#rightMenu{
+	position: fixed;
+	top :0;
+	left: 75%;
+	width: 230px;
+	margin-top: 5%;
+}
+
+.grid-line{
+	stroke:black;
+	shape-rendering: crispEdges;
+	stroke-opacity: .2;
+}
+
+.prev-line{
+	stroke: #000066;
+	stroke-width: 1;
+	shape-rendering: geometricPrecision;
+}
+
+.point-line{
+	fill: #000000;
+	stroke: #000000;
+	stroke-width: 1.5;
+	shape-rendering: geometricPrecision;
+	pointer-events:all;
+}
+.point-line:hover{
+	fill: #FF0000;
+	stroke: #FF0000;
+	stroke-width: 2.5;
+}
+
+.bar.main:hover {
+	stroke: #000;
+}
+
+
+.axis1 text,
+.axis2 text,
+.axis text {
+	font: 10px sans-serif;
+}
+
+.axis1 path,
+.axis1 line,
+.axis2 path,
+.axis2 line,
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.y.axis path {
+	display: none;
+}
+
+
+.brush .extent {
+    stroke: #fff;
+    fill-opacity: .125;
+    shape-rendering: crispEdges;
+}
+
+.line {
+	fill: none;
+	stroke: #000;
+	stroke-width: 1.5px;
+}
