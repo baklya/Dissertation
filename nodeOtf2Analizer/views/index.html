@@ -18,11 +18,24 @@
             <th>Patterns</th>
           </tr>
           <tr ng-repeat="trace in traces" >
-            <td><a ng-href="traces/{{trace.TraceId}}">{{trace.TraceId}}</a></td>
+            <td><a ng-href="traces/{{trace.TraceId}}">{{trace.TraceId}} - {{trace.NumberOfLocations}}</a></td>
             <td><a ng-href="comm_matrix/{{trace.TraceId}}">{{trace.TraceId}}</a></td>   
             <td><a ng-href="one_tenth_comm_matrix/{{trace.TraceId}}">{{trace.TraceId}}</a></td>
             <td><a ng-href="time_matrix/{{trace.TraceId}}">{{trace.TraceId}}</a></td>
             <td><a ng-href="patterns/{{trace.TraceId}}">{{trace.TraceId}}</a></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="list2">
+        <table class="items">
+          <tr>
+            <th>Efficiency Groups</th>
+
+          </tr>
+          <tr ng-repeat="eg in EfficiencyGroups" >
+            <td><a ng-href="efficiency/{{eg}}">{{eg}}</a></td>
+
           </tr>
         </table>
       </div>

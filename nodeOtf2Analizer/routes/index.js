@@ -142,7 +142,113 @@ module.exports = exports = function(app, db) {
         });
     });
     
-    
+ 
+
+
+
+    //EfficiencyGroup
+    app.get('/efficiency', function(req, res) {
+        db.collection('TraceIds').distinct('EfficiencyGroup', {Status: "done" }, function(err, grps) {
+            if(err) throw err;
+            if(grps.length){
+                grps.sort();
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                res.end(JSON.stringify(grps));
+            }
+            else{
+                res.status(404).send('Page Not Found');
+            }
+        });
+    });
+
+
+    app.get('/efficiency/:Group', function(req, res) {
+        // TODO сложный запрос с возвратом только нужных данных
+
+        // нужно получить время - количество процесосв
+
+        db.collection('TraceIds').findOne({ EfficiencyGroup: req.params.Group, Status: "done" },function(err, traces) {
+            if(err) throw err;
+            console.log(traces)
+            if(traces){
+
+                res.render('efficiency', {Name: req.params.Group});
+            }
+            else{
+                res.status(404).send('Page Not Found');
+            }
+        });
+
+/*
+        db.collection('TraceIds').find({ EfficiencyGroup: req.params.Group, Status: "done" },function(err, item) {
+            if(err) throw err;
+            if(item){
+                res.render('efficiency', {data: item});
+            }
+            else{
+                res.status(404).send('Page Not Found');
+            }
+        });
+        */
+    });
+
+
+
+    app.get('/EfficiencyData/:Group', function(req, res) {
+        // TODO сложный запрос с возвратом только нужных данных
+
+        // нужно получить время - количество процесосв
+
+        //db.collection('TraceIds').distinct('TraceId', { EfficiencyGroup: req.params.Group, Status: "done" }, function(err, traces) {
+
+        db.collection('TraceIds').aggregate([{$match: {EfficiencyGroup: req.params.Group, Status: "done"}}, {$project: {TraceId : 1, _id: 0}}], function(err, traces) {
+            if(err) throw err;
+            if(traces.length){
+
+
+                db.collection('Events').aggregate([{$match: {$or: traces} }, {$group: {_id: "$TraceId", MaxLoc : {$max : "$Location" }, MaxTime: {$max : "$TimeEnd"}, MinTime: {$min : "$TimeBegin"}}}, {$project: { Time: {$subtract : ["$MaxTime", "$MinTime"]}, MaxLoc: 1, _id: 0}}, {$sort: {MaxLoc: 1}}],{allowDiskUse : true}, function(err, trs) {
+                    if(err) throw err;
+                    if(trs.length){
+
+                        //res.render('efficiency', {data: traces});
+
+                        res.writeHead(200, {'Content-Type': 'application/json'});
+                        res.end(JSON.stringify(trs));
+                    }
+                    else{
+                        res.status(404).send('Page Not Found');
+                    }
+                });
+
+
+
+
+
+
+
+
+                //res.render('efficiency', {data: traces});
+
+                //res.writeHead(200, {'Content-Type': 'application/json'});
+                //res.end(JSON.stringify(traces));
+            }
+            else{
+                res.status(404).send('Page Not Found');
+            }
+        });
+
+/*
+        db.collection('TraceIds').find({ EfficiencyGroup: req.params.Group, Status: "done" },function(err, item) {
+            if(err) throw err;
+            if(item){
+                res.render('efficiency', {data: item});
+            }
+            else{
+                res.status(404).send('Page Not Found');
+            }
+        });
+        */
+    });
 
 
     // communication matrix

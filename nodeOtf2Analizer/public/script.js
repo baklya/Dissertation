@@ -32,9 +32,23 @@ angular.module('traceApp', [])
         });
       
     };
+
+    $scope.getEfficiencyGroup = function(){
+      $http({method: "GET", url: "/efficiency", cache: false}).
+          success(function(grps, status) {
+              //console.log(rooms);
+              $scope.EfficiencyGroups = grps;
+          }).
+          error(function(data, status) {
+            $scope.data = data || "Request failed";
+            $scope.status = status;
+        });
+      
+    };
     
     $scope.init = function(){
       $scope.getTraces();
+      $scope.getEfficiencyGroup();
     };
     
     

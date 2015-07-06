@@ -53,11 +53,46 @@ input{
 	shape-rendering: geometricPrecision;
 	pointer-events:all;
 }
+
 .point-line:hover{
 	fill: #FF0000;
 	stroke: #FF0000;
 	stroke-width: 2.5;
 }
+
+.efficiency-line{
+	fill: #33FF22;
+	stroke: #33FF22;
+	stroke-width: 1.5;
+	shape-rendering: geometricPrecision;
+	pointer-events:all;
+}
+
+.efficiency-dot{
+	fill: #33FF22;
+	stroke: #229900;
+	stroke-width: 1.5;
+	shape-rendering: geometricPrecision;
+	pointer-events:all;
+}
+
+
+.speedup-line{
+	fill: #1122EE;
+	stroke: #1122EE;
+	stroke-width: 1.5;
+	shape-rendering: geometricPrecision;
+	pointer-events:all;
+}
+
+.speedup-dot{
+	fill: #1122EE;
+	stroke: #111177;
+	stroke-width: 1.5;
+	shape-rendering: geometricPrecision;
+	pointer-events:all;
+}
+
 
 .bar.main:hover {
 	stroke: #000;

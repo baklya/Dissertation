@@ -22,6 +22,14 @@
 
   var currentPartLabel = document.getElementById("current_part");
 
+
+
+  var stats = document.getElementById("stats_content");
+
+  
+
+
+
   d3.selection.prototype.last = function(){
     var last = this.size()-1;
     return d3.select(this[0][last]);
@@ -231,6 +239,113 @@
 
 
     function renderBars () {
+
+      d3.select("#stats_content").selectAll("*").remove();
+
+      var addStat = function(list, string){
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(string));
+        list.appendChild(li);
+      }
+
+      function sortNumbers(a, b){
+        return a - b;
+      }
+
+      // Подсчитываем статистику
+
+      var maxMessage = 0;
+      for (var i = allData[_curGroup].Sends.length - 1; i >= 0; i--) {
+        if(allData[_curGroup].Sends[i].SizeSent > maxMessage){
+          maxMessage = allData[_curGroup].Sends[i].SizeSent;
+        }
+      };
+
+      var maxLocs = [];
+      for (var i = allData[_curGroup].Sends.length - 1; i >= 0; i--) {
+        if(allData[_curGroup].Sends[i].SizeSent / maxMessage > 0.98 && maxLocs.indexOf(allData[_curGroup].Sends[i].From) == -1){
+          maxLocs.push(allData[_curGroup].Sends[i].From);
+        }
+        
+      };
+      maxLocs.sort(sortNumbers);
+
+
+
+
+
+
+      var SendMessages = [];
+
+      for (var i = locNumber - 1; i >= 0; i--) {
+        SendMessages[i] = 0;
+      };
+
+      for (var i = allData[_curGroup].Sends.length - 1; i >= 0; i--) {
+        SendMessages[allData[_curGroup].Sends[i].From] += allData[_curGroup].Sends[i].SizeSent;
+      };
+
+      var maxSendMessage = 0;
+      for (var i = locNumber - 1; i >= 0; i--) {
+        if(SendMessages[i] > maxSendMessage){
+          maxSendMessage = SendMessages[i];
+        }
+      };
+
+
+      var maxSendLocs = [];
+      for (var i = locNumber - 1; i >= 0; i--) {
+        if(SendMessages[i] / maxSendMessage > 0.98){
+          maxSendLocs.push(i);
+        }
+        
+      };
+      maxSendLocs.sort(sortNumbers);
+
+
+
+      var RecvMessages = [];
+
+      for (var i = locNumber - 1; i >= 0; i--) {
+        RecvMessages[i] = 0;
+      };
+
+      for (var i = allData[_curGroup].Sends.length - 1; i >= 0; i--) {
+        RecvMessages[allData[_curGroup].Sends[i].To] += allData[_curGroup].Sends[i].SizeSent;
+      };
+
+      var maxRecvMessage = 0;
+      for (var i = locNumber - 1; i >= 0; i--) {
+        if(RecvMessages[i] > maxRecvMessage){
+          maxRecvMessage = RecvMessages[i];
+        }
+      };
+
+
+      var maxRecvLocs = [];
+      for (var i = locNumber - 1; i >= 0; i--) {
+        if(RecvMessages[i] / maxRecvMessage > 0.98){
+          maxRecvLocs.push(i);
+        }
+        
+      };
+      maxRecvLocs.sort(sortNumbers);
+
+
+
+
+      console.log(allData[_curGroup]);
+      addStat(stats, "Max Message Length: " + maxMessage);
+      addStat(stats, "Locations With Max Message: " + maxLocs.join(", "));
+
+
+      addStat(stats, "Max Sends: " + maxSendMessage);
+      addStat(stats, "Locations With Max Sends: " + maxSendLocs.join(", "));
+
+      addStat(stats, "Max Recvs: " + maxRecvMessage);
+      addStat(stats, "Locations With Max Recvs: " + maxRecvLocs.join(", "));
+
+
 
       var minSizeSent = d3.min(data, function(d) { 
         if(d.To >= 0){
