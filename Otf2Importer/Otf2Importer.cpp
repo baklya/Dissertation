@@ -649,7 +649,7 @@ int main(int argc, char* argv[])
         cout << "connected ok" << endl;
 
 		string tracePath;
-		const char* defaultTracePath = "/home/vladimir/Desktop/kovcheg64-trace/traces.otf2";
+		const char* defaultTracePath = "/home/vladimir/Desktop/vlad-trace/traces.otf2";
 		//const char* defaultTracePath = "/home/vladimir/Dicertation/otf2_trace/traces.otf2";
 		//const char* defaultTracePath = "/home/vladimir/Desktop/qgen10-trace/traces.otf2";
 		//const char* defaultTracePath = "/home/vladimir/tests/mpi_isend/scorep-20150416_1732_2789913328919/traces.otf2";
